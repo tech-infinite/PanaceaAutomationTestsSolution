@@ -8,15 +8,10 @@ using System.Threading.Tasks;
 
 namespace PanaceaAutomationTests.PageObjects
 {
-    public class AdminPage : BasePage
+    public class LocationPage : BasePage
     {
-
-
-        public AdminPage(IWebDriver driver) : base(driver)
+        public LocationPage(IWebDriver driver) : base(driver)
         {
-
         }
-            
-        
     }
 }

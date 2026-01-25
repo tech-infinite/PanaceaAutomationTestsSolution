@@ -17,7 +17,7 @@ namespace PanaceaAutomationTests.Pages
         public bool AreRoomsDisplayed() => driver.FindElements(roomCards).Count > 0;
 
         // Verify all room cards have name, price, description
-        public bool DoRoomsHaveNamePriceAndDescription()
+        public bool RoomsHaveNamePriceAndDescription()
         {
             var names = driver.FindElements(roomNames);
             var prices = driver.FindElements(roomPrices);
