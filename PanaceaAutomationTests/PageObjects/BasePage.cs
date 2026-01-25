@@ -1,43 +1,41 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace PanaceaAutomationTests.PageObjects
+namespace PanaceaAutomationTests.Pages
 {
     public class BasePage
     {
-        protected IWebDriver driver;
+        protected readonly IWebDriver driver;
+        private readonly WebDriverWait wait;
 
         public BasePage(IWebDriver driver)
         {
             this.driver = driver;
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
 
-        public IWebElement FindElement(By by)
+        protected IWebElement FindElement(By by)
         {
-            return driver.FindElement(by);
+            return wait.Until(ExpectedConditions.ElementIsVisible(by));
         }
 
-        public void ClickElement(By by)
+        protected void ClickElement(By by)
         {
             FindElement(by).Click();
         }
 
-        public void SendKeys(By by, string text)
+        protected void SendKeys(By by, string text)
         {
-            FindElement(by).SendKeys(text);
+            var element = FindElement(by);
+            element.Clear();
+            element.SendKeys(text);
         }
 
-        public void WaitForElement(By by, int timeout = 10)
+        protected string GetText(By by)
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeout));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(by));
+            return FindElement(by).Text;
         }
-
     }
 }

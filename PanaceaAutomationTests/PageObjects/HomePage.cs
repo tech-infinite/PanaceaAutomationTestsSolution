@@ -9,7 +9,8 @@ namespace PanaceaAutomationTests.PageObjects
 {
     public class HomePage : BasePage
     {
-        private readonly By RoomsNavLink = By.LinkText("Rooms");
+        private By RoomsNavLink = By.LinkText("Rooms");
+         
 
         public HomePage(IWebDriver driver) : base(driver) { }
 
