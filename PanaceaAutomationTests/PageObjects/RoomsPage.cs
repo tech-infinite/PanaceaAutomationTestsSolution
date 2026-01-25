@@ -1,0 +1,34 @@
+﻿using OpenQA.Selenium;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace PanaceaAutomationTests.Pages
+{
+    public class RoomsPage : BasePage
+    {
+        private readonly By roomCards = By.CssSelector(".room-card");
+        private readonly By roomNames = By.CssSelector(".room-card h3");
+        private readonly By roomPrices = By.CssSelector(".room-card .price");
+        private readonly By roomDescriptions = By.CssSelector(".room-card p");
+
+        public RoomsPage(IWebDriver driver) : base(driver) { }
+
+        // Check if rooms section contains any room cards
+        public bool AreRoomsDisplayed() => driver.FindElements(roomCards).Count > 0;
+
+        // Verify all room cards have name, price, description
+        public bool DoRoomsHaveNamePriceAndDescription()
+        {
+            var names = driver.FindElements(roomNames);
+            var prices = driver.FindElements(roomPrices);
+            var descriptions = driver.FindElements(roomDescriptions);
+
+            return names.Any() && prices.Any() && descriptions.Any();
+        }
+
+        // Helper methods to retrieve room data
+        public IEnumerable<string> GetRoomNames() => driver.FindElements(roomNames).Select(e => e.Text);
+        public IEnumerable<string> GetRoomPrices() => driver.FindElements(roomPrices).Select(e => e.Text);
+        public IEnumerable<string> GetRoomDescriptions() => driver.FindElements(roomDescriptions).Select(e => e.Text);
+    }
+}

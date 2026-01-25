@@ -1,25 +1,53 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace PanaceaAutomationTests.PageObjects
+namespace PanaceaAutomationTests.Pages
 {
     public class HomePage : BasePage
     {
-        private By RoomsNavLink = By.LinkText("Rooms");
-         
+        private const string BaseUrl = "https://automationintesting.online/";
+
+        private readonly By homePageHeader = By.CssSelector("header .display-4");
+
+        // Navigation links selectors
+        private readonly By roomsNavLink = By.CssSelector("a.nav-link[href*='#rooms']");
+        private readonly By bookingNavLink = By.CssSelector("a.nav-link[href*='#booking']");
+        private readonly By amenitiesNavLink = By.CssSelector("a.nav-link[href*='#amenities']");
+        private readonly By locationNavLink = By.CssSelector("a.nav-link[href*='#location']");
+        private readonly By contactNavLink = By.CssSelector("a.nav-link[href*='#contact']");
+        private readonly By adminNavLink = By.CssSelector("a.nav-link[href*='admin']");
+
+        // Sections selectors
+        private readonly By roomsSection = By.CssSelector("#rooms");
+        private readonly By bookingSection = By.CssSelector("#booking");
+        private readonly By amenitiesSection = By.CssSelector("#amenities");
+        private readonly By locationSection = By.CssSelector("#location");
+        private readonly By contactSection = By.CssSelector("#contact");
+        private readonly By adminSection = By.CssSelector("#admin");
 
         public HomePage(IWebDriver driver) : base(driver) { }
 
+        public void NavigateToHomePage() => driver.Navigate().GoToUrl(BaseUrl);
+
+        public bool IsHomePageDisplayed() =>
+            FindElement(homePageHeader).Displayed;
 
 
-        public bool AreRoomsDisplayed()
-        {
-            return driver.FindElements(Rooms).Any();
-        }
+        // Scroll / anchor navigation methods
+        private void ScrollToSection(By sectionNavLink) => ClickElement(sectionNavLink);
+
+        public void ScrollToRoomsSection() => ScrollToSection(roomsNavLink);
+        public void ScrollToBookingSection() => ScrollToSection(bookingNavLink);
+        public void ScrollToAmenitiesSection() => ScrollToSection(amenitiesNavLink);
+        public void ScrollToLocationSection() => ScrollToSection(locationNavLink);
+        public void ScrollToContactSection() => ScrollToSection(contactNavLink);
+        public void ScrollToAdminSection() => ScrollToSection(adminNavLink);
+
+        // Section visibility checks
+        public bool IsRoomsSectionVisible() => FindElement(roomsSection).Displayed;
+        public bool IsBookingSectionVisible() => FindElement(bookingSection).Displayed;
+        public bool IsAmenitiesSectionVisible() => FindElement(amenitiesSection).Displayed;
+        public bool IsLocationSectionVisible() => FindElement(locationSection).Displayed;
+        public bool IsContactSectionVisible() => FindElement(contactSection).Displayed;
+        public bool IsAdminSectionVisible() => FindElement(adminSection).Displayed;
     }
-
 }
