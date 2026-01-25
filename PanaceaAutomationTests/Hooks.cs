@@ -1,4 +1,9 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using PanaceaAutomationTests.Utilities;
+using Reqnroll;
+using Reqnroll.BoDi;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +11,29 @@ using System.Threading.Tasks;
 
 namespace PanaceaAutomationTests
 {
-    internal class Hooks
+    [Binding]
+    public class Hooks
     {
+        private readonly IObjectContainer _container;
+        private IWebDriver _driver;
 
+        public Hooks(IObjectContainer container)
+        {
+            _container = container;
+        }
+
+        [BeforeScenario]
+        public void SetUp()
+        {
+            _driver = new ChromeDriver();
+            _container.RegisterInstanceAs<IWebDriver>(_driver);
+        }
+
+        [AfterScenario]
+        public void TearDown()
+        {
+            _driver.Quit();
+        }
     }
+
 }
