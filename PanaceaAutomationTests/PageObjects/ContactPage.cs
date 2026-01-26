@@ -12,6 +12,7 @@ namespace PanaceaAutomationTests.PageObjects
     {
         public ContactPage(IWebDriver driver) : base(driver)
         {
+
         }
     }
 }

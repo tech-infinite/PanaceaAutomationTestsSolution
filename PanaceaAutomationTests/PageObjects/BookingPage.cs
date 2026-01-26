@@ -5,7 +5,7 @@ namespace PanaceaAutomationTests.Pages
     public class BookingPage : BasePage
     {
         // Room info selectors
-        private readonly By roomTitle = By.CssSelector(".room-title"); // e.g., "Double Room"
+        private readonly By roomTitle = By.CssSelector(".room-title"); // e.g.Single Room, "Double Room, etc"
         private readonly By roomPricePerNight = By.CssSelector(".price-summary .price");
         private readonly By roomDescription = By.CssSelector(".room-description");
 
@@ -43,7 +43,8 @@ namespace PanaceaAutomationTests.Pages
         // Price Summary 
         public string GetTotalPrice() => FindElement(totalPrice).Text;
 
-        // Validate that all form fields are displayed
+        
+        // Validating all form fields are present
         public bool AreAllFormFieldsVisible() =>
 
             FindElement(firstNameInput).Displayed &&
