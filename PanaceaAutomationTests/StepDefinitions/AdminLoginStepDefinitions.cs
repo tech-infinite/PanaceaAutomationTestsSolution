@@ -1,4 +1,7 @@
 using System;
+using OpenQA.Selenium;
+using PanaceaAutomationTests.PageObjects;
+using PanaceaAutomationTests.Pages;
 using Reqnroll;
 
 namespace PanaceaAutomationTests.StepDefinitions
@@ -6,22 +9,30 @@ namespace PanaceaAutomationTests.StepDefinitions
     [Binding]
     public class AdminLoginStepDefinitions
     {
+       
+        private readonly AdminLoginPage _adminLoginPage;
+        private readonly HomePage _homePage;
+
+        public AdminLoginStepDefinitions(IWebDriver driver)
+        {
+             _adminLoginPage = new AdminLoginPage(driver);
+        }
+
         [Given("the admin is on the login page")]
         public void GivenTheAdminIsOnTheLoginPage()
         {
-            throw new PendingStepException();
+            _homePage.ScrollToAdminSection();
+            _adminLoginPage.ClickLogin();
         }
 
         [When("the admin enters valid credentials")]
         public void WhenTheAdminEntersValidCredentials()
         {
-            throw new PendingStepException();
+            _adminLoginPage.EnterUsername("admin1");
+            _adminLoginPage.EnterPassword("password123");
+            _adminLoginPage.ClickLogin();
         }
 
-        [Then("the admin dashboard should be displayed")]
-        public void ThenTheAdminDashboardShouldBeDisplayed()
-        {
-            throw new PendingStepException();
-        }
+       
     }
 }

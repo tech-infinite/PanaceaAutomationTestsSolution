@@ -12,6 +12,7 @@ namespace PanaceaAutomationTests.PageObjects
     {
         public LocationPage(IWebDriver driver) : base(driver)
         {
+
         }
     }
 }

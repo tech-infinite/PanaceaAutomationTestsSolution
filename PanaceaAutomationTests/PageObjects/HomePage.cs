@@ -11,7 +11,7 @@ namespace PanaceaAutomationTests.Pages
         // Navigation links selectors
         private readonly By roomsNavLink = By.CssSelector("a.nav-link[href*='#rooms']");
         private readonly By bookingNavLink = By.CssSelector("a.nav-link[href*='#booking']");
-        private readonly By amenitiesNavLink = By.CssSelector("a.nav-link[href*='#amenities']");
+        private readonly By amenitiesNavLink = By.Id("amenities");
         private readonly By locationNavLink = By.CssSelector("a.nav-link[href*='#location']");
         private readonly By contactNavLink = By.CssSelector("a.nav-link[href*='#contact']");
         private readonly By adminNavLink = By.CssSelector("a.nav-link[href*='admin']");

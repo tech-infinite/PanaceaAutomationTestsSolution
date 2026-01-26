@@ -32,6 +32,7 @@ namespace PanaceaAutomationTests
         [AfterScenario]
         public void TearDown()
         {
+            Thread.Sleep(3000); // Optional: Pause to observe the browser before closing
             _driver.Quit();
         }
     }
