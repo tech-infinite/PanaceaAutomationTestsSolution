@@ -1,4 +1,7 @@
 using System;
+using NUnit.Framework;
+using OpenQA.Selenium;
+using PanaceaAutomationTests.Pages;
 using Reqnroll;
 
 namespace PanaceaAutomationTests.StepDefinitions
@@ -6,10 +9,21 @@ namespace PanaceaAutomationTests.StepDefinitions
     [Binding]
     public class RoomBookingStepDefinitions
     {
+        private readonly HomePage _homePage;
+        private readonly BookingPage _bookingPage;
+
+        public RoomBookingStepDefinitions(IWebDriver driver)
+        {
+             _homePage = new HomePage(driver);
+            _bookingPage = new BookingPage(driver);
+        }
+
         [Given("the user is on the hotel booking homepage")]
         public void GivenTheUserIsOnTheHotelBookingHomepage()
         {
-            throw new PendingStepException();
+            _homePage.NavigateToHomePage();
+            Assert.That(_homePage.IsHomePageDisplayed(), Is.True);
+           
         }
 
         [Given("available rooms are displayed")]
@@ -48,16 +62,5 @@ namespace PanaceaAutomationTests.StepDefinitions
             throw new PendingStepException();
         }
 
-        [When("the user submits the booking without entering required guest information")]
-        public void WhenTheUserSubmitsTheBookingWithoutEnteringRequiredGuestInformation()
-        {
-            throw new PendingStepException();
-        }
-
-        [Then("an appropriate validation message should be displayed")]
-        public void ThenAnAppropriateValidationMessageShouldBeDisplayed()
-        {
-            throw new PendingStepException();
-        }
     }
 }

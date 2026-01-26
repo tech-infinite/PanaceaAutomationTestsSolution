@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using OpenQA.Selenium;
 using PanaceaAutomationTests.PageObjects;
 using PanaceaAutomationTests.Pages;
@@ -30,13 +31,14 @@ namespace PanaceaAutomationTests.StepDefinitions
         [When("the user scrolls to the Rooms section")]
         public void WhenTheUserScrollsToTheRoomsSection()
         {
-            
+            _homePage.ScrollToRoomsSection();          
         }
 
         [Then("the Rooms section should be visible")]
         public void ThenTheRoomsSectionShouldBeVisible()
         {
-            
+            Assert.That(_homePage.IsRoomsSectionVisible(), Is.True);
+                
         }
 
         [Then("the list of available rooms should be displayed")]
@@ -48,31 +50,31 @@ namespace PanaceaAutomationTests.StepDefinitions
         [When("the user scrolls to the Amenities section")]
         public void WhenTheUserScrollsToTheAmenitiesSection()
         {
-            
+            _homePage.ScrollToAmenitiesSection();
         }
 
         [Then("the Amenities section should be visible")]
         public void ThenTheAmenitiesSectionShouldBeVisible()
         {
-            
+            _homePage.ScrollToAmenitiesSection();
         }
 
         [Then("the amenities list should be displayed")]
         public void ThenTheAmenitiesListShouldBeDisplayed()
         {
-            
+            Assert.That(_homePage.IsAmenitiesSectionVisible(), Is.True);
         }
 
         [When("the user scrolls to the Location section")]
         public void WhenTheUserScrollsToTheLocationSection()
         {
-            
+            _homePage.ScrollToLocationSection();
         }
 
         [Then("the Location section should be visible")]
         public void ThenTheLocationSectionShouldBeVisible()
         {
-            
+            Assert.That(_homePage.IsLocationSectionVisible(), Is.True);
         }
 
         [Then("the location map or details should be displayed")]
@@ -84,13 +86,13 @@ namespace PanaceaAutomationTests.StepDefinitions
         [When("the user scrolls to the Contact section")]
         public void WhenTheUserScrollsToTheContactSection()
         {
-            
+            _homePage.ScrollToContactSection();
         }
 
         [Then("the Contact section should be visible")]
         public void ThenTheContactSectionShouldBeVisible()
         {
-            
+            Assert.That(_homePage.IsContactSectionVisible(), Is.True);
         }
 
         [Then("the contact information should be displayed")]
@@ -98,5 +100,18 @@ namespace PanaceaAutomationTests.StepDefinitions
         {
             
         }
+
+        [When("the user scrolls to the Admin section")]
+        public void WhenTheUserScrollsToTheAdminSection()
+        {
+            _homePage.ScrollToAdminSection();
+        }
+
+        [Then("the Admin section should be visible")]
+        public void ThenTheAdminSectionShouldBeVisible()
+        {
+            Assert.That(_homePage.IsLoginFormVisible(), Is.True);
+        }
+
     }
 }

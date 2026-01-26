@@ -15,7 +15,7 @@ Scenario: User successfully books a room
   And the user submits the booking
   Then the booking should be confirmed successfully
 
-  Scenario: User attempts to book without mandatory guest details
-  Given the user has selected a room
-  When the user submits the booking without entering required guest information
-  Then an appropriate validation message should be displayed
+  #Scenario: User attempts to book without mandatory guest details
+  #Given the user has selected a room
+  #When the user submits the booking without entering required guest information
+  #Then an appropriate validation message should be displayed

@@ -6,7 +6,7 @@ namespace PanaceaAutomationTests.Pages
     {
         private const string BaseUrl = "https://automationintesting.online/";
 
-        private readonly By homePageHeader = By.CssSelector("header .display-4");
+        private readonly By homePageHeader = By.XPath("//a[contains(@class,'navbar-brand')]//span[contains(text(),'Shady Meadows')]");
 
         // Navigation links selectors
         private readonly By roomsNavLink = By.CssSelector("a.nav-link[href*='#rooms']");
@@ -23,13 +23,13 @@ namespace PanaceaAutomationTests.Pages
         private readonly By locationSection = By.CssSelector("#location");
         private readonly By contactSection = By.CssSelector("#contact");
         private readonly By adminSection = By.CssSelector("#admin");
+        private readonly By loginForm = By.XPath("//h2[contains(text(),'Admin') or contains(text(),'Login')]");
 
         public HomePage(IWebDriver driver) : base(driver) { }
 
         public void NavigateToHomePage() => driver.Navigate().GoToUrl(BaseUrl);
 
-        public bool IsHomePageDisplayed() =>
-            FindElement(homePageHeader).Displayed;
+        public bool IsHomePageDisplayed() =>  FindElement(homePageHeader).Displayed;
 
 
         // Scroll / anchor navigation methods
@@ -49,5 +49,7 @@ namespace PanaceaAutomationTests.Pages
         public bool IsLocationSectionVisible() => FindElement(locationSection).Displayed;
         public bool IsContactSectionVisible() => FindElement(contactSection).Displayed;
         public bool IsAdminSectionVisible() => FindElement(adminSection).Displayed;
+
+        public bool IsLoginFormVisible() => FindElement(loginForm).Displayed;
     }
 }

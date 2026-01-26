@@ -26,3 +26,9 @@
     When the user scrolls to the Contact section
     Then the Contact section should be visible
     And the contact information should be displayed
+
+  Scenario: Navigate to Admin section
+    Given the user is on the hotel booking homepage
+    When the user scrolls to the Admin section
+    Then the Admin section should be visible
+    
