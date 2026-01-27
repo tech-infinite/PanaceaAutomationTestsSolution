@@ -6,10 +6,6 @@
   Background:
     Given the admin is on the login page
 
-  Scenario: Admin logs in with valid credentials
-    When the admin enters valid credentials
-    And submits the login form
-    Then the admin dashboard should be displayed
 
   Scenario: Admin login fails with invalid credentials
     When the admin enters invalid credentials

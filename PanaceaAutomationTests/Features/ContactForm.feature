@@ -1,9 +1,11 @@
 ﻿Feature: ContactForm
 
-A short summary of the feature
+As a user I should be able to fill in 
+the contact form in order to submit an
+enquiry.
 
-@tag1
-Scenario: [scenario name]
-	Given [context]
-	When [action]
-	Then [outcome]
+
+Scenario: User submits the enquiry form successfully
+	Given the user navigates to the Contact link
+	When the user submits enquiry form with valid details
+	Then an acknowledgement message should be displayed

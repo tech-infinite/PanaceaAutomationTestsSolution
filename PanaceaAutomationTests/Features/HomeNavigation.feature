@@ -9,12 +9,6 @@
     Then the Rooms section should be visible
     And the list of available rooms should be displayed
 
-  #Scenario: Navigate to Amenities section
-  #  Given the user is on the hotel booking homepage
-  #  When the user scrolls to the Amenities section
-  #  Then the Amenities section should be visible
-  #  And the amenities list should be displayed
-
   Scenario: Navigate to Location section
     Given the user is on the hotel booking homepage
     When the user scrolls to the Location section
@@ -31,4 +25,6 @@
     Given the user is on the hotel booking homepage
     When the user scrolls to the Admin section
     Then the Admin section should be visible
+
+
     

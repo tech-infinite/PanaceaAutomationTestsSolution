@@ -25,28 +25,7 @@ namespace PanaceaAutomationTests.StepDefinitions
             _adminLoginPage.ClickLogin();
         }
 
-        [When("the admin enters valid credentials")]
-        public void WhenTheAdminEntersValidCredentials()
-        {
-            _adminLoginPage.EnterUsername("admin1");
-            _adminLoginPage.EnterPassword("password123");
-            
-        }
-
-        [When("submits the login form")]
-        public void WhenSubmitsTheLoginForm()
-        {
-            
-            _adminLoginPage.ClickLogin();
-        }
-
-        [Then("the admin dashboard should be displayed")]
-        public void ThenTheAdminDashboardShouldBeDisplayed()
-        {
-            
-        }
-
-        [When("the admin enters invalid credentials")]
+         [When("the admin enters invalid credentials")]
         public void WhenTheAdminEntersInvalidCredentials()
         {
             

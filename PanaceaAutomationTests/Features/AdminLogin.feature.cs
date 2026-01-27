@@ -18,7 +18,7 @@ namespace PanaceaAutomationTests.Features
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Reqnroll", "3.0.0.0")]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::NUnit.Framework.TestFixtureAttribute()]
-    [global::NUnit.Framework.DescriptionAttribute("AdminLogin")]
+    [global::NUnit.Framework.DescriptionAttribute("Admin Login")]
     [global::NUnit.Framework.FixtureLifeCycleAttribute(global::NUnit.Framework.LifeCycle.InstancePerTestCase)]
     public partial class AdminLoginFeature
     {
@@ -27,8 +27,8 @@ namespace PanaceaAutomationTests.Features
         
         private static string[] featureTags = ((string[])(null));
         
-        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Features", "AdminLogin", "  As an admin I want to log into the admin page in order to manage hotel rooms an" +
-                "d bookings", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
+        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Features", "Admin Login", "  As a hotel administrator\r\n  I want to log into the admin portal\r\n  So that I ca" +
+                "n manage rooms and bookings", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
         
 #line 1 "AdminLogin.feature"
 #line hidden
@@ -104,23 +104,32 @@ namespace PanaceaAutomationTests.Features
             await testRunner.CollectScenarioErrorsAsync();
         }
         
+        public virtual async global::System.Threading.Tasks.Task FeatureBackgroundAsync()
+        {
+#line 6
+  #line hidden
+#line 7
+    await testRunner.GivenAsync("the admin is on the login page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+        }
+        
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
         {
             return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/AdminLogin.feature.ndjson", 3);
         }
         
         [global::NUnit.Framework.TestAttribute()]
-        [global::NUnit.Framework.DescriptionAttribute("Admin logs in with valid credentials")]
-        public async global::System.Threading.Tasks.Task AdminLogsInWithValidCredentials()
+        [global::NUnit.Framework.DescriptionAttribute("Admin login fails with invalid credentials")]
+        public async global::System.Threading.Tasks.Task AdminLoginFailsWithInvalidCredentials()
         {
             string[] tagsOfScenario = ((string[])(null));
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
             string pickleIndex = "0";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Admin logs in with valid credentials", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Admin login fails with invalid credentials", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 5
-this.ScenarioInitialize(scenarioInfo, ruleInfo);
+#line 10
+  this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
             {
@@ -130,13 +139,19 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             {
                 await this.ScenarioStartAsync();
 #line 6
-  await testRunner.GivenAsync("the admin is on the login page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+  await this.FeatureBackgroundAsync();
 #line hidden
-#line 7
-  await testRunner.WhenAsync("the admin enters valid credentials", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line 11
+    await testRunner.WhenAsync("the admin enters invalid credentials", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 8
-  await testRunner.ThenAsync("the admin dashboard should be displayed", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line 12
+    await testRunner.AndAsync("submits the login form", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 13
+    await testRunner.ThenAsync("an authentication error message should be displayed", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 14
+    await testRunner.AndAsync("the admin should remain on the login page", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

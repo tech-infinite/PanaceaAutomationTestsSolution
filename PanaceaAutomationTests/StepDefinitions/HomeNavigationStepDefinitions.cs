@@ -14,7 +14,7 @@ namespace PanaceaAutomationTests.StepDefinitions
         private readonly IWebDriver _driver;
         private readonly HomePage _homePage;
         private readonly RoomsPage _roomsPage;
-        private readonly AmenitiesPage _amenitiesPage;
+        //private readonly AmenitiesPage _amenitiesPage;
         private readonly LocationPage _locationPage;
         private readonly ContactPage _contactPage;
 
@@ -23,7 +23,6 @@ namespace PanaceaAutomationTests.StepDefinitions
             _driver = container.Resolve<IWebDriver>();
             _homePage = new HomePage(_driver);
             _roomsPage = new RoomsPage(_driver);
-            _amenitiesPage = new AmenitiesPage(_driver);
             _locationPage = new LocationPage(_driver);
             _contactPage = new ContactPage(_driver);
         }

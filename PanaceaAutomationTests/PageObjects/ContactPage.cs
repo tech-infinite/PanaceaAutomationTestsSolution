@@ -31,8 +31,13 @@ namespace PanaceaAutomationTests.PageObjects
         public void ClickSubmit() => ClickElement(submitButton);
 
 
+        // Form submission elements
+        private readonly By successMessage = By.CssSelector(".alert-success");
+
+
         // Form visibility checks
         public bool IsContactFormVisible() => FindElement(formMessageHeader).Displayed;
 
+        public bool IsSuccessMessageVisible() => FindElement(successMessage).Displayed;
     }
 }
