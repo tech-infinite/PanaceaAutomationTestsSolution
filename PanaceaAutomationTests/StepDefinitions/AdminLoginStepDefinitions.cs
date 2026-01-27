@@ -30,9 +30,41 @@ namespace PanaceaAutomationTests.StepDefinitions
         {
             _adminLoginPage.EnterUsername("admin1");
             _adminLoginPage.EnterPassword("password123");
+            
+        }
+
+        [When("submits the login form")]
+        public void WhenSubmitsTheLoginForm()
+        {
+            
             _adminLoginPage.ClickLogin();
         }
 
-       
+        [Then("the admin dashboard should be displayed")]
+        public void ThenTheAdminDashboardShouldBeDisplayed()
+        {
+            
+        }
+
+        [When("the admin enters invalid credentials")]
+        public void WhenTheAdminEntersInvalidCredentials()
+        {
+            
+        }
+
+        [Then("an authentication error message should be displayed")]
+        public void ThenAnAuthenticationErrorMessageShouldBeDisplayed()
+        {
+            
+        }
+
+        [Then("the admin should remain on the login page")]
+        public void ThenTheAdminShouldRemainOnTheLoginPage()
+        {
+            
+        }
+
+
+
     }
 }
