@@ -11,14 +11,16 @@ namespace PanaceaAutomationTests.PageObjects
     public class ContactPage : BasePage
     {
         // Contact Message form field selectors
-        private readonly By formMessageHeader = By.XPath("//h2[text()='Send Us a Message']");
-        private readonly By nameInput = By.Id("name");
-        private readonly By emailInput = By.Id("email");
-        private readonly By phoneInput = By.Id("phone");
-        private readonly By subjectInput = By.Id("subject");
-        private readonly By messageInput = By.Id("description");
-        private readonly By submitButton = By.CssSelector("button[type='Submit']");
-    
+        private readonly By formMessageHeader = By.XPath("//h3[text()='Send Us a Message']");
+        private readonly By nameInput = By.CssSelector("[data-testid='ContactName']");
+        private readonly By emailInput = By.CssSelector("[data-testid='ContactEmail']");
+        private readonly By phoneInput = By.CssSelector("[data-testid='ContactPhone']");
+        private readonly By subjectInput = By.CssSelector("[data-testid='ContactSubject']");
+        private readonly By messageInput = By.CssSelector("[data-testid='ContactDescription']");
+        private readonly By submitButton = By.XPath("//button[normalize-space()='Submit']");
+
+        // Form submission elements
+        private readonly By successMessage = By.XPath("//h3[contains(text(),'Thanks for getting in touch')]");
         public ContactPage(IWebDriver driver) : base(driver) { }
 
 
@@ -28,11 +30,7 @@ namespace PanaceaAutomationTests.PageObjects
         public void EnterPhone(string phone) => SendKeys(phoneInput, phone);
         public void EnterSubject(string subject) => SendKeys(subjectInput, subject);
         public void EnterMessage(string message) => SendKeys(messageInput, message);
-        public void ClickSubmit() => ClickElement(submitButton);
-
-
-        // Form submission elements
-        private readonly By successMessage = By.CssSelector(".alert-success");
+        public void ClickSubmit() => FindElement(submitButton);
 
 
         // Form visibility checks

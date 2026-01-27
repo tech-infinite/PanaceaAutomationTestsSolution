@@ -21,21 +21,33 @@ namespace PanaceaAutomationTests.Pages
             return wait.Until(ExpectedConditions.ElementIsVisible(by));
         }
 
+        protected IWebElement FindClickableElement(By by)
+        {
+            return wait.Until(ExpectedConditions.ElementToBeClickable(by));
+        }
+
         protected void ClickElement(By by)
         {
-            FindElement(by).Click();
+            FindClickableElement(by).Click();
         }
 
         protected void SendKeys(By by, string text)
         {
-            var element = FindElement(by);
+            var element = FindClickableElement(by);
             element.Clear();
             element.SendKeys(text);
         }
 
-        protected string GetText(By by)
+        protected void GetText(By by)
         {
-            return FindElement(by).Text;
+            FindClickableElement(by).Click();
         }
+
+        protected bool WaitForText(By by, string partialText, int timeout = 10)
+        {
+            return wait.Until(driver =>
+                driver.FindElement(by).Text.Contains(partialText));
+        }
+
     }
 }

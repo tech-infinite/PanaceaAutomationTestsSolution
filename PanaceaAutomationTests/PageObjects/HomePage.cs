@@ -35,7 +35,7 @@ namespace PanaceaAutomationTests.Pages
 
 
         // Scroll / anchor navigation methods
-        private void ScrollToSection(By sectionNavLink) => ClickElement(sectionNavLink);
+        private void ScrollToSection(By sectionNavLink) => FindClickableElement(sectionNavLink);
 
         public void ScrollToRoomsSection() => ScrollToSection(roomsNavLink);
         public void ScrollToBookingSection() => ScrollToSection(bookingNavLink);
