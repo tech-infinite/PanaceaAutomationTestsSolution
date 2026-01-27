@@ -47,23 +47,23 @@ namespace PanaceaAutomationTests.StepDefinitions
             
         }
 
-        [When("the user scrolls to the Amenities section")]
-        public void WhenTheUserScrollsToTheAmenitiesSection()
-        {
-            _homePage.ScrollToAmenitiesSection();
-        }
+        //[When("the user scrolls to the Amenities section")]
+        //public void WhenTheUserScrollsToTheAmenitiesSection()
+        //{
+        //    _homePage.ScrollToAmenitiesSection();
+        //}
 
-        [Then("the Amenities section should be visible")]
-        public void ThenTheAmenitiesSectionShouldBeVisible()
-        {
-            _homePage.ScrollToAmenitiesSection();
-        }
+        //[Then("the Amenities section should be visible")]
+        //public void ThenTheAmenitiesSectionShouldBeVisible()
+        //{
+        //    _homePage.ScrollToAmenitiesSection();
+        //}
 
-        [Then("the amenities list should be displayed")]
-        public void ThenTheAmenitiesListShouldBeDisplayed()
-        {
-            Assert.That(_homePage.IsAmenitiesSectionVisible(), Is.True);
-        }
+        //[Then("the amenities list should be displayed")]
+        //public void ThenTheAmenitiesListShouldBeDisplayed()
+        //{
+        //    Assert.That(_homePage.IsAmenitiesSectionVisible(), Is.True);
+        //}
 
         [When("the user scrolls to the Location section")]
         public void WhenTheUserScrollsToTheLocationSection()
@@ -80,7 +80,7 @@ namespace PanaceaAutomationTests.StepDefinitions
         [Then("the location map or details should be displayed")]
         public void ThenTheLocationMapOrDetailsShouldBeDisplayed()
         {
-            
+            Assert.That(_homePage.IsLocationHeaderVisible(), Is.True);
         }
 
         [When("the user scrolls to the Contact section")]

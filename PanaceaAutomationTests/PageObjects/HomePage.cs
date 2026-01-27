@@ -15,6 +15,8 @@ namespace PanaceaAutomationTests.Pages
         private readonly By locationNavLink = By.CssSelector("a.nav-link[href*='#location']");
         private readonly By contactNavLink = By.CssSelector("a.nav-link[href*='#contact']");
         private readonly By adminNavLink = By.CssSelector("a.nav-link[href*='admin']");
+        private readonly By locationHeader = By.XPath("//h2[text()='Our Location']");
+
 
         // Sections selectors
         private readonly By roomsSection = By.CssSelector("#rooms");
@@ -50,6 +52,7 @@ namespace PanaceaAutomationTests.Pages
         public bool IsContactSectionVisible() => FindElement(contactSection).Displayed;
         public bool IsAdminSectionVisible() => FindElement(adminSection).Displayed;
 
+        public bool IsLocationHeaderVisible() => FindElement(locationHeader).Displayed;
         public bool IsLoginFormVisible() => FindElement(loginForm).Displayed;
     }
 }

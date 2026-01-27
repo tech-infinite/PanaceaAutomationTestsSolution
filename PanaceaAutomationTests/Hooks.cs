@@ -27,6 +27,8 @@ namespace PanaceaAutomationTests
         {
             _driver = new ChromeDriver();
             _container.RegisterInstanceAs<IWebDriver>(_driver);
+            _driver.Manage().Window.Maximize();
+            _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
         }
 
         [AfterScenario]

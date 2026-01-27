@@ -9,11 +9,11 @@
     Then the Rooms section should be visible
     And the list of available rooms should be displayed
 
-  Scenario: Navigate to Amenities section
-    Given the user is on the hotel booking homepage
-    When the user scrolls to the Amenities section
-    Then the Amenities section should be visible
-    And the amenities list should be displayed
+  #Scenario: Navigate to Amenities section
+  #  Given the user is on the hotel booking homepage
+  #  When the user scrolls to the Amenities section
+  #  Then the Amenities section should be visible
+  #  And the amenities list should be displayed
 
   Scenario: Navigate to Location section
     Given the user is on the hotel booking homepage

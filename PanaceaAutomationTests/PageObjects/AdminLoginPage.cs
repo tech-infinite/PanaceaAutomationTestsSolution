@@ -23,7 +23,6 @@ namespace PanaceaAutomationTests.PageObjects
 
         public bool IsLoginPageDisplayed()
         {
-            WaitForElement(loginHeader);
             return FindElement(loginHeader).Displayed;
         }
 
@@ -47,6 +46,16 @@ namespace PanaceaAutomationTests.PageObjects
             EnterUsername(username);
             EnterPassword(password);
             ClickLogin();
+        }
+
+        public void ClickLogOutButton()
+        {
+            ClickElement(logoutButton);
+        }
+
+        public bool IsFrontPageLinkVisible()
+        {
+            return FindElement(frontPage).Displayed;
         }
     }
 
