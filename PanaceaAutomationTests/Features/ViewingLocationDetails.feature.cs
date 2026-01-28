@@ -18,19 +18,18 @@ namespace PanaceaAutomationTests.Features
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Reqnroll", "3.0.0.0")]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::NUnit.Framework.TestFixtureAttribute()]
-    [global::NUnit.Framework.DescriptionAttribute("Admin Login")]
+    [global::NUnit.Framework.DescriptionAttribute("Viewing Location Details")]
     [global::NUnit.Framework.FixtureLifeCycleAttribute(global::NUnit.Framework.LifeCycle.InstancePerTestCase)]
-    public partial class AdminLoginFeature
+    public partial class ViewingLocationDetailsFeature
     {
         
         private global::Reqnroll.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Features", "Admin Login", "  As an unauthorised user\r\nI should not be able to log in to the admin area\r\nso t" +
-                "hat restricted functionality remains secure.", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
+        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Features", "Viewing Location Details", null, global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
         
-#line 1 "AdminLogin.feature"
+#line 1 "ViewingLocationDetails.feature"
 #line hidden
         
         [global::NUnit.Framework.OneTimeSetUpAttribute()]
@@ -106,29 +105,29 @@ namespace PanaceaAutomationTests.Features
         
         public virtual async global::System.Threading.Tasks.Task FeatureBackgroundAsync()
         {
-#line 7
+#line 3
   #line hidden
-#line 8
-    await testRunner.GivenAsync("the user is on the admin login page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line 4
+    await testRunner.GivenAsync("I am on the Shady Meadows \"Our Location\" page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
         }
         
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
         {
-            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/AdminLogin.feature.ndjson", 3);
+            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/ViewingLocationDetails.feature.ndjson", 3);
         }
         
         [global::NUnit.Framework.TestAttribute()]
-        [global::NUnit.Framework.DescriptionAttribute("Admin login fails with invalid credentials")]
-        public async global::System.Threading.Tasks.Task AdminLoginFailsWithInvalidCredentials()
+        [global::NUnit.Framework.DescriptionAttribute("Viewing the map and contact information")]
+        public async global::System.Threading.Tasks.Task ViewingTheMapAndContactInformation()
         {
             string[] tagsOfScenario = ((string[])(null));
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
             string pickleIndex = "0";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Admin login fails with invalid credentials", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Viewing the map and contact information", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 11
+#line 6
   this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -138,17 +137,17 @@ namespace PanaceaAutomationTests.Features
             else
             {
                 await this.ScenarioStartAsync();
-#line 7
+#line 3
   await this.FeatureBackgroundAsync();
 #line hidden
-#line 12
-    await testRunner.WhenAsync("the admin enters invalid credentials", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line 7
+    await testRunner.ThenAsync("the location map should be visible with its pin and attribution", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 13
-    await testRunner.AndAsync("submits the login form", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line 8
+    await testRunner.AndAsync("the contact information should be displayed with address, phone, and email", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 14
-    await testRunner.ThenAsync("an authentication error message should be displayed", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line 9
+    await testRunner.AndAsync("the \"Getting Here\" description should be visible", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

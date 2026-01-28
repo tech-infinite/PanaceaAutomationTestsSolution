@@ -44,6 +44,8 @@ namespace PanaceaAutomationTests.Pages
         public void ScrollToContactSection() => ScrollToSection(contactNavLink);
         public void ScrollToAdminSection() => ScrollToSection(adminNavLink);
 
+        public void ClickAdminNavLink() => FindClickableElement(adminNavLink).Click();
+
         // Section visibility checks
         public bool IsRoomsSectionVisible() => FindElement(roomsSection).Displayed;
         public bool IsBookingSectionVisible() => FindElement(bookingSection).Displayed;
@@ -54,5 +56,8 @@ namespace PanaceaAutomationTests.Pages
 
         public bool IsLocationHeaderVisible() => FindElement(locationHeader).Displayed;
         public bool IsLoginFormVisible() => FindElement(loginForm).Displayed;
+
+
+
     }
 }

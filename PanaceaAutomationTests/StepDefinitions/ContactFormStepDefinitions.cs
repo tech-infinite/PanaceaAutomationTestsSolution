@@ -32,7 +32,7 @@ namespace PanaceaAutomationTests.StepDefinitions
         {
             _contactPage.EnterName("John Doe");
             _contactPage.EnterEmail("j.doe@qa.com");
-            _contactPage.EnterPhone("0745822890");
+            _contactPage.EnterPhone("07458228901");
             _contactPage.EnterSubject("Room Inquiry");
             _contactPage.EnterMessage("I would like to know more about your room options.");
             _contactPage.ClickSubmit();
@@ -42,6 +42,7 @@ namespace PanaceaAutomationTests.StepDefinitions
         public void ThenAnAcknowledgementMessageShouldBeDisplayed()
         {
             Assert.That(_contactPage.IsSuccessMessageVisible(), Is.True);
+            Thread.Sleep(5000); // Pause to observe the result before closing
         }
     }
 }

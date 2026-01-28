@@ -1,4 +1,6 @@
 using System;
+using OpenQA.Selenium;
+using PanaceaAutomationTests.Pages;
 using Reqnroll;
 
 namespace PanaceaAutomationTests.StepDefinitions
@@ -6,10 +8,10 @@ namespace PanaceaAutomationTests.StepDefinitions
     [Binding]
     public class ViewRoomsStepDefinitions
     {
-
-        public ViewRoomsStepDefinitions()
+        private readonly RoomsPage _roomsPage;
+        public ViewRoomsStepDefinitions(IWebDriver driver)
         {
-                
+             _roomsPage = new RoomsPage(driver);
         }
         [Then("the user should be able to view the list of available rooms")]
         public void ThenTheUserShouldBeAbleToViewTheListOfAvailableRooms()

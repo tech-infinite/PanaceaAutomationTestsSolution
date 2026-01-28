@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using PanaceaAutomationTests.Pages;
+using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +22,8 @@ namespace PanaceaAutomationTests.PageObjects
         private readonly By submitButton = By.XPath("//button[normalize-space()='Submit']");
 
         // Form submission elements
-        private readonly By successMessage = By.XPath("//h3[contains(text(),'Thanks for getting in touch')]");
+        private readonly By successMessage = By.XPath("//h3[starts-with(normalize-space(),'Thanks for getting in touch')]");
+        
         public ContactPage(IWebDriver driver) : base(driver) { }
 
 
@@ -30,12 +33,23 @@ namespace PanaceaAutomationTests.PageObjects
         public void EnterPhone(string phone) => SendKeys(phoneInput, phone);
         public void EnterSubject(string subject) => SendKeys(subjectInput, subject);
         public void EnterMessage(string message) => SendKeys(messageInput, message);
-        public void ClickSubmit() => FindElement(submitButton);
+        public void ClickSubmit() => ClickElement(submitButton);
 
 
         // Form visibility checks
         public bool IsContactFormVisible() => FindElement(formMessageHeader).Displayed;
 
-        public bool IsSuccessMessageVisible() => FindElement(successMessage).Displayed;
+        public bool IsSuccessMessageVisible()
+        {
+            try
+            {
+                wait.Until(ExpectedConditions.ElementExists(successMessage));
+                return driver.FindElement(successMessage).Displayed;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

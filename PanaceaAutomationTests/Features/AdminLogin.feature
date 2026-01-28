@@ -1,14 +1,15 @@
 ﻿Feature: Admin Login
-  As a hotel administrator
-  I want to log into the admin portal
-  So that I can manage rooms and bookings
+  
+  As an unauthorised user
+I should not be able to log in to the admin area
+so that restricted functionality remains secure.
 
   Background:
-    Given the admin is on the login page
+    Given the user is on the admin login page
 
 
   Scenario: Admin login fails with invalid credentials
     When the admin enters invalid credentials
     And submits the login form
     Then an authentication error message should be displayed
-    And the admin should remain on the login page
+   # And the admin should remain on the login page

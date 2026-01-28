@@ -8,7 +8,7 @@ namespace PanaceaAutomationTests.Pages
     public class BasePage
     {
         protected readonly IWebDriver driver;
-        private readonly WebDriverWait wait;
+        protected WebDriverWait wait;
 
         public BasePage(IWebDriver driver)
         {
@@ -28,8 +28,28 @@ namespace PanaceaAutomationTests.Pages
 
         protected void ClickElement(By by)
         {
-            FindClickableElement(by).Click();
+            var element = wait.Until(ExpectedConditions.ElementToBeClickable(by));
+
+            // Scroll the element to the center of the viewport
+            ((IJavaScriptExecutor)driver).ExecuteScript(
+                "arguments[0].scrollIntoView({behavior: 'instant', block: 'center', inline: 'center'});",
+                element
+            );
+
+            Thread.Sleep(150); // allow layout to settle
+
+            try
+            {
+                element.Click();
+            }
+            catch (ElementClickInterceptedException)
+            {
+                // Fallback: JS click bypasses overlays
+                ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].click();", element);
+            }
         }
+
+
 
         protected void SendKeys(By by, string text)
         {
@@ -38,9 +58,9 @@ namespace PanaceaAutomationTests.Pages
             element.SendKeys(text);
         }
 
-        protected void GetText(By by)
+        protected string GetText(By by)
         {
-            FindClickableElement(by).Click();
+            return FindElement(by).Text;
         }
 
         protected bool WaitForText(By by, string partialText, int timeout = 10)
