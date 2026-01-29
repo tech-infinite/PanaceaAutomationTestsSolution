@@ -1,4 +1,5 @@
 using System;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using PanaceaAutomationTests.Pages;
 using Reqnroll;
@@ -8,33 +9,49 @@ namespace PanaceaAutomationTests.StepDefinitions
     [Binding]
     public class ViewRoomsStepDefinitions
     {
+        private readonly HomePage _homePage;
         private readonly RoomsPage _roomsPage;
+
         public ViewRoomsStepDefinitions(IWebDriver driver)
         {
-             _roomsPage = new RoomsPage(driver);
+            _homePage= new HomePage(driver);
+            _roomsPage = new RoomsPage(driver);
         }
+
+
+        [Given("the user is on the hotel booking homepage")]
+        public void GivenTheUserIsOnTheHotelBookingHomepage()
+        {
+            _homePage.NavigateToHomePage();
+            _homePage.ScrollToRoomsSection();
+            Assert.That(_homePage.IsRoomsSectionVisible(), Is.True, "Rooms section was not visible on the homepage.");
+        }
+
+        [Given("available rooms are displayed")]
+        public void GivenAvailableRoomsAreDisplayed()
+        {
+            
+            _roomsPage.AreRoomsDisplayed();
+            Assert.That(_roomsPage.AreRoomsDisplayed(), Is.True);
+        }
+
+
         [Then("the user should be able to view the list of available rooms")]
         public void ThenTheUserShouldBeAbleToViewTheListOfAvailableRooms()
         {
-            
+            Assert.That(_roomsPage.AreRoomsDisplayed(), Is.True, "No room cards are displayed on the page.");
+
+
         }
 
         [Then("each room should display its name, price, and description")]
         public void ThenEachRoomShouldDisplayItsNamePriceAndDescription()
         {
-            
+            Assert.That(_roomsPage.RoomsHaveNamePriceAndDescription(), Is.True,
+    "Some rooms are missing name, price, or description.");
+
         }
 
-        [When("the user applies a room type and price filter")]
-        public void WhenTheUserAppliesARoomTypeAndPriceFilter()
-        {
-            
-        }
 
-        [Then("only rooms matching the selected criteria should be displayed")]
-        public void ThenOnlyRoomsMatchingTheSelectedCriteriaShouldBeDisplayed()
-        {
-           
-        }
     }
 }

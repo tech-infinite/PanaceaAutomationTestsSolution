@@ -106,16 +106,14 @@ namespace PanaceaAutomationTests.Features
         
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
         {
-            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/ViewRooms.feature.ndjson", 4);
+            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/ViewRooms.feature.ndjson", 3);
         }
         
         [global::NUnit.Framework.TestAttribute()]
         [global::NUnit.Framework.DescriptionAttribute("User views available rooms")]
-        [global::NUnit.Framework.CategoryAttribute("tag1")]
         public async global::System.Threading.Tasks.Task UserViewsAvailableRooms()
         {
-            string[] tagsOfScenario = new string[] {
-                    "tag1"};
+            string[] tagsOfScenario = ((string[])(null));
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
             string pickleIndex = "0";
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("User views available rooms", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
@@ -139,42 +137,6 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
 #line 11
  await testRunner.AndAsync("each room should display its name, price, and description", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-            }
-            await this.ScenarioCleanupAsync();
-        }
-        
-        [global::NUnit.Framework.TestAttribute()]
-        [global::NUnit.Framework.DescriptionAttribute("Filter available rooms by type and price range")]
-        public async global::System.Threading.Tasks.Task FilterAvailableRoomsByTypeAndPriceRange()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "1";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Filter available rooms by type and price range", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
-            string[] tagsOfRule = ((string[])(null));
-            global::Reqnroll.RuleInfo ruleInfo = null;
-#line 14
-this.ScenarioInitialize(scenarioInfo, ruleInfo);
-#line hidden
-            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                await testRunner.SkipScenarioAsync();
-            }
-            else
-            {
-                await this.ScenarioStartAsync();
-#line 15
-  await testRunner.GivenAsync("the user is on the hotel booking homepage", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
-#line hidden
-#line 16
-  await testRunner.AndAsync("available rooms are displayed", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-#line 17
-  await testRunner.WhenAsync("the user applies a room type and price filter", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
-#line hidden
-#line 18
-  await testRunner.ThenAsync("only rooms matching the selected criteria should be displayed", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

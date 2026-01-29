@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.DevTools.V142.DOM;
+using OpenQA.Selenium.Support.Events;
 
 namespace PanaceaAutomationTests.Pages
 {
@@ -16,11 +18,11 @@ namespace PanaceaAutomationTests.Pages
         private readonly By phoneInput = By.CssSelector("input[placeholder='Phone']");
 
         // Buttons selectors
-        private readonly By reserveButton = By.CssSelector("button:contains('Reserve Now')");
+        private readonly By reserveButton = By.Id("doReservation");
         private readonly By cancelButton = By.CssSelector("button:contains('Cancel')");
 
         // Price summary details selectors
-        private readonly By totalPrice = By.CssSelector(".price-summary .total .price");
+        private readonly By totalPrice = By.XPath("//span[text()='Total']");
 
         public BookingPage(IWebDriver driver) : base(driver) { }
 

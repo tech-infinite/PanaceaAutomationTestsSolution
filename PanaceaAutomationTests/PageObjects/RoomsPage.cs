@@ -7,14 +7,26 @@ namespace PanaceaAutomationTests.Pages
     public class RoomsPage : BasePage
     {
         private readonly By roomCards = By.CssSelector(".room-card");
-        private readonly By roomNames = By.CssSelector(".room-card h3");
-        private readonly By roomPrices = By.CssSelector(".room-card .price");
-        private readonly By roomDescriptions = By.CssSelector(".room-card p");
+        private readonly By roomNames = By.CssSelector(".room-card .card-title");
+        private readonly By roomDescriptions = By.CssSelector(".room-card .card-text");
+        private readonly By roomPrices = By.CssSelector(".room-card .fw-bold");
+
 
         public RoomsPage(IWebDriver driver) : base(driver) { }
 
         // Check if rooms section contains any room cards
-        public bool AreRoomsDisplayed() => driver.FindElements(roomCards).Count > 0;
+        public bool AreRoomsDisplayed()
+        {
+            try
+            {
+                return FindElement(roomCards).Displayed;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
 
         // Verify all room cards have name, price, description
         public bool RoomsHaveNamePriceAndDescription()

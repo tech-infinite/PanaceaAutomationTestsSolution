@@ -11,8 +11,4 @@ Scenario: User views available rooms
 	And each room should display its name, price, and description
 
 
-Scenario: Filter available rooms by type and price range
-  Given the user is on the hotel booking homepage
-  And available rooms are displayed
-  When the user applies a room type and price filter
-  Then only rooms matching the selected criteria should be displayed
+

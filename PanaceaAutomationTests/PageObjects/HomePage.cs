@@ -34,10 +34,10 @@ namespace PanaceaAutomationTests.Pages
         public bool IsHomePageDisplayed() =>  FindElement(homePageHeader).Displayed;
 
 
-        // Scroll / anchor navigation methods
+        // Scroll navigation methods
         private void ScrollToSection(By sectionNavLink) => FindClickableElement(sectionNavLink);
 
-        public void ScrollToRoomsSection() => ScrollToSection(roomsNavLink);
+        public void ScrollToRoomsSection() => FindClickableElement(roomsNavLink).Click();
         public void ScrollToBookingSection() => ScrollToSection(bookingNavLink);
         public void ScrollToAmenitiesSection() => ScrollToSection(amenitiesNavLink);
         public void ScrollToLocationSection() => ScrollToSection(locationNavLink);
