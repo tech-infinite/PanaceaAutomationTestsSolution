@@ -6,7 +6,7 @@ to make a booking.
 
 
 Scenario: User views available rooms 
-	Given the user is on the hotel booking homepage
+	Given the user naviagtes to the Rooms section of the hotel website
 	Then the user should be able to view the list of available rooms
 	And each room should display its name, price, and description
 

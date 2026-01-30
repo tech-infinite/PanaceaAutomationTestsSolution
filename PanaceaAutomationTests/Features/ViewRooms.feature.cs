@@ -130,7 +130,7 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             {
                 await this.ScenarioStartAsync();
 #line 9
- await testRunner.GivenAsync("the user is on the hotel booking homepage", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+ await testRunner.GivenAsync("the user naviagtes to the Rooms section of the hotel website", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 10
  await testRunner.ThenAsync("the user should be able to view the list of available rooms", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");

@@ -10,7 +10,7 @@ namespace PanaceaAutomationTests.Pages
         private readonly By roomNames = By.CssSelector(".room-card .card-title");
         private readonly By roomDescriptions = By.CssSelector(".room-card .card-text");
         private readonly By roomPrices = By.CssSelector(".room-card .fw-bold");
-
+        private readonly By bookNowButtons = By.CssSelector(".room-card .btn-primary");
 
         public RoomsPage(IWebDriver driver) : base(driver) { }
 
@@ -42,5 +42,28 @@ namespace PanaceaAutomationTests.Pages
         public IEnumerable<string> GetRoomNames() => driver.FindElements(roomNames).Select(e => e.Text);
         public IEnumerable<string> GetRoomPrices() => driver.FindElements(roomPrices).Select(e => e.Text);
         public IEnumerable<string> GetRoomDescriptions() => driver.FindElements(roomDescriptions).Select(e => e.Text);
+
+
+        public void ClickFirstBookNowButton()
+        {
+            var buttons = driver.FindElements(bookNowButtons);
+            if (!buttons.Any())
+                throw new NoSuchElementException("No Book Now buttons found on Rooms page.");
+
+            buttons.First().Click();
+        }
+    
+
+        public void ClickBookNowForRoom(string roomName)
+        {
+            var roomCard = driver.FindElements(By.CssSelector(".room-card"))
+                .First(card => card.FindElement(By.TagName("h5")).Text.Trim()
+                .Equals(roomName, StringComparison.OrdinalIgnoreCase));
+
+            roomCard.FindElement(By.CssSelector("a.btn.btn-primary")).Click();
+        }
+
+
+
     }
 }

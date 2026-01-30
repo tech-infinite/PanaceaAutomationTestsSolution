@@ -19,13 +19,14 @@ namespace PanaceaAutomationTests.StepDefinitions
         }
 
 
-        [Given("the user is on the hotel booking homepage")]
-        public void GivenTheUserIsOnTheHotelBookingHomepage()
+        [Given("the user naviagtes to the Rooms section of the hotel website")]
+        public void GivenTheUserNaviagtesToTheRoomsSectionOfTheHotelWebsite()
         {
             _homePage.NavigateToHomePage();
             _homePage.ScrollToRoomsSection();
             Assert.That(_homePage.IsRoomsSectionVisible(), Is.True, "Rooms section was not visible on the homepage.");
         }
+
 
         [Given("available rooms are displayed")]
         public void GivenAvailableRoomsAreDisplayed()
