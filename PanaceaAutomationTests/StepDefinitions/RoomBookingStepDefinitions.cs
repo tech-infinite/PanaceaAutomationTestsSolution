@@ -1,4 +1,3 @@
-using System;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using PanaceaAutomationTests.Pages;
@@ -10,7 +9,7 @@ namespace PanaceaAutomationTests.StepDefinitions
     [Binding]
     public class RoomBookingStepDefinitions
     {
-        private readonly IWebDriver _driver;
+        //private readonly IWebDriver _driver;
         private readonly HomePage _homePage;
         private readonly BookingPage _bookingPage;
         private readonly RoomsPage _roomsPage;
@@ -56,23 +55,20 @@ namespace PanaceaAutomationTests.StepDefinitions
             Assert.That(_roomsPage.AreRoomsDisplayed(), Is.True, "No available rooms are displayed.");
         }
 
-        //[Given("the page dispalys available rooms")]
-        //public void GivenThePageDispalysAvailableRooms()
-        //{
-        //    Assert.That(_roomsPage.AreRoomsDisplayed(), Is.True, "No rooms are displayed on the page.");
-        //}
-
-        
         [When("the user selects a room")]
         public void WhenTheUserSelectsARoom()
         {
+            _homePage.NavigateToHomePage();
+            _roomsPage.WaitForRoomsToLoad();
             _roomsPage.ClickFirstBookNowButton(); // method in RoomsPage
+            _bookingPage.WaitForBookingPageToLoad();
             Assert.That(_bookingPage.IsBookingFormVisible(), Is.True, "Booking form did not appear.");
         }
 
         [When("the user enters valid booking dates")]
         public void WhenTheUserEntersValidBookingDates()
         {
+            _bookingPage.SelectBookingDate();
             Assert.That(_bookingPage.GetPricePerNight(), Is.Not.Empty, "Room price not displayed.");
         }
 

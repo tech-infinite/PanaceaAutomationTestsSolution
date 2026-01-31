@@ -1,11 +1,12 @@
 ﻿using OpenQA.Selenium;
-using System.Collections.Generic;
-using System.Linq;
+using SeleniumExtras.WaitHelpers;
 
 namespace PanaceaAutomationTests.Pages
 {
     public class RoomsPage : BasePage
     {
+        private readonly TimeSpan DefaultTimeout = TimeSpan.FromSeconds(10);
+
         private readonly By roomCards = By.CssSelector(".room-card");
         private readonly By roomNames = By.CssSelector(".room-card .card-title");
         private readonly By roomDescriptions = By.CssSelector(".room-card .card-text");
@@ -27,6 +28,11 @@ namespace PanaceaAutomationTests.Pages
             }
         }
 
+        public void WaitForRoomsToLoad()
+        {
+            wait.Until(ExpectedConditions.ElementExists(roomCards));
+        }
+
 
         // Verify all room cards have name, price, description
         public bool RoomsHaveNamePriceAndDescription()
@@ -42,17 +48,25 @@ namespace PanaceaAutomationTests.Pages
         public IEnumerable<string> GetRoomNames() => driver.FindElements(roomNames).Select(e => e.Text);
         public IEnumerable<string> GetRoomPrices() => driver.FindElements(roomPrices).Select(e => e.Text);
         public IEnumerable<string> GetRoomDescriptions() => driver.FindElements(roomDescriptions).Select(e => e.Text);
-
-
         public void ClickFirstBookNowButton()
         {
-            var buttons = driver.FindElements(bookNowButtons);
-            if (!buttons.Any())
-                throw new NoSuchElementException("No Book Now buttons found on Rooms page.");
+            var button = FindClickableElement(bookNowButtons);
 
-            buttons.First().Click();
+            ((IJavaScriptExecutor)driver).ExecuteScript(
+                "arguments[0].scrollIntoView({block:'center'});", button);
+
+            Thread.Sleep(150);
+
+            try
+            {
+                button.Click();
+            }
+            catch (ElementClickInterceptedException)
+            {
+                ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].click();", button);
+            }
         }
-    
+
 
         public void ClickBookNowForRoom(string roomName)
         {

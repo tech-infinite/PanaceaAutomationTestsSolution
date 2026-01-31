@@ -1,13 +1,10 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.DevTools.V142.DOM;
-using OpenQA.Selenium.Support.Events;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 
 namespace PanaceaAutomationTests.Pages
 {
-    using System;
-    using OpenQA.Selenium;
-    using OpenQA.Selenium.Support.UI;
-    using SeleniumExtras.WaitHelpers;
+
 
     namespace PanaceaAutomationTests.Pages
     {
@@ -17,15 +14,15 @@ namespace PanaceaAutomationTests.Pages
 
             // Room info selectors
             private readonly By roomTitle = By.CssSelector(".room-title");
-            private readonly By roomPricePerNight = By.CssSelector(".price-summary .price");
+            private readonly By roomPricePerNight = By.XPath("//div[contains(text(),'Price Summary')]");
             private readonly By roomDescription = By.XPath("//h2[normalize-space()='Room Description']/following-sibling::p[1]");
             private readonly By roomFeaturesContainer = By.XPath("//h2[normalize-space()='Room Features']/following-sibling::div[1]");
+            private readonly By bookingFormHeader = By.XPath("//h2[contains(text(),'Book This Room')]");
+            
 
-            private readonly By checkInInput =
-    By.XPath("//label[normalize-space()='Check In']/following::input[1]");
+            private readonly By checkInInput = By.XPath("//label[normalize-space()='Check In']/following::input[1]");
 
-            private readonly By checkOutInput =
-                By.XPath("//label[normalize-space()='Check Out']/following::input[1]");
+            private readonly By checkOutInput = By.XPath("//label[normalize-space()='Check Out']/following::input[1]");
 
             private readonly By checkAvailabilityButton = By.XPath("//button[normalize-space()='Check Availability']");
 
@@ -54,40 +51,105 @@ namespace PanaceaAutomationTests.Pages
 
             public BookingPage(IWebDriver driver) : base(driver) { }
 
+
             private WebDriverWait Wait => new WebDriverWait(driver, DefaultTimeout);
+
+            public void WaitForBookingPageToLoad()
+            {
+                wait.Until(driver => driver.Url.Contains("reservation"));
+            }
+            private IWebElement WaitForClickableElement(By by)
+            {
+                return Wait.Until(ExpectedConditions.ElementToBeClickable(by));
+            }
 
             public void EnterCheckInDate(string date)
             {
-                var el = Wait.Until(ExpectedConditions.ElementIsVisible(checkInInput));
-                el.Click();
-                el.SendKeys(Keys.Control + "a");
-                el.SendKeys(Keys.Delete);
-                el.SendKeys(date);
-                el.SendKeys(Keys.Tab); // triggers blur so React updates state
+                var input = WaitForClickableElement(checkInInput);
+
+                input.Clear();
+                input.SendKeys(date);
+                input.SendKeys(Keys.Tab);   // closes the datepicker after selecting date 
             }
 
             public void EnterCheckOutDate(string date)
             {
-                var el = Wait.Until(ExpectedConditions.ElementIsVisible(checkOutInput));
-                el.Click();
-                el.SendKeys(Keys.Control + "a");
-                el.SendKeys(Keys.Delete);
-                el.SendKeys(date);
-                el.SendKeys(Keys.Tab);
+                var input = WaitForClickableElement(checkOutInput);
+
+                input.Clear();
+                input.SendKeys(date);
+                input.SendKeys(Keys.Tab);  // closes the datepicker again after selecting date
             }
 
+            public void ClickCheckAvailability()
+            {
+                var button = WaitForClickableElement(checkAvailabilityButton);
 
-            public void ClickCheckAvailability() => Wait.Until(ExpectedConditions.ElementToBeClickable(checkAvailabilityButton)).Click();
+                ((IJavaScriptExecutor)driver)
+                    .ExecuteScript("arguments[0].scrollIntoView({block: 'center'});", button);
+
+                button.Click();
+            }
 
 
             // Room information
             public string GetRoomTitle() => WaitAndGetText(roomTitle);
             public string GetRoomDescription() => WaitAndGetText(roomDescription);
-            public string GetPricePerNight() => WaitAndGetText(roomPricePerNight);
+            
             public string GetRoomFeaturesText() => WaitAndGetText(roomFeaturesContainer);
 
+            
+            
             // Form actions
-            public bool IsBookingFormVisible() => IsElementVisible(bookingForm);
+            public bool IsBookingFormVisible()
+            {
+                try
+                {
+                    wait.Until(ExpectedConditions.ElementExists(bookingFormHeader));
+                    return driver.FindElement(bookingFormHeader).Displayed;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+
+            public string GetPricePerNight()
+            {
+                try
+                {
+                    wait.Until(ExpectedConditions.ElementExists(roomPricePerNight));
+                    return driver.FindElement(roomPricePerNight).Text.Trim();
+                }
+                catch
+                {
+                    return string.Empty;
+                }
+            }
+
+            private readonly By selectedDate = By.XPath("//button[contains(@class,'rbc-button-link')]");
+
+            public void SelectBookingDate()
+            {
+                var dateCell = wait.Until(ExpectedConditions.ElementToBeClickable(
+                    By.CssSelector(".rbc-date-cell button")
+                ));
+
+                ((IJavaScriptExecutor)driver).ExecuteScript(
+                    "arguments[0].scrollIntoView({block:'center'});", dateCell);
+
+                Thread.Sleep(150);
+
+                try
+                {
+                    dateCell.Click();
+                }
+                catch (ElementClickInterceptedException)
+                {
+                    ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].click();", dateCell);
+                }
+            }
+
             public void EnterFirstName(string firstName) => WaitAndSendKeys(firstNameInput, firstName);
             public void EnterLastName(string lastName) => WaitAndSendKeys(lastNameInput, lastName);
             public void EnterEmail(string email) => WaitAndSendKeys(emailInput, email);

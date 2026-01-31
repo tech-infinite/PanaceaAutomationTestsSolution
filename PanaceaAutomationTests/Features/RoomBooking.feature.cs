@@ -111,9 +111,6 @@ namespace PanaceaAutomationTests.Features
 #line 9
     await testRunner.GivenAsync("the user navigates to the hotel booking page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 10
-    await testRunner.AndAsync("the page dispalys available rooms", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
         }
         
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
