@@ -49,8 +49,6 @@ namespace PanaceaAutomationTests.Pages
             }
         }
 
-
-
         protected void SendKeys(By by, string text)
         {
             var element = FindClickableElement(by);

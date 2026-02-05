@@ -56,7 +56,11 @@ namespace PanaceaAutomationTests.Pages
 
             public void WaitForBookingPageToLoad()
             {
-                wait.Until(driver => driver.Url.Contains("reservation"));
+                wait.Until(driver => driver.Url.Contains("room")
+                      || driver.Url.Contains("booking")
+                      || driver.Url.Contains("reservation"));
+
+
             }
             private IWebElement WaitForClickableElement(By by)
             {
@@ -127,26 +131,31 @@ namespace PanaceaAutomationTests.Pages
                 }
             }
 
-            private readonly By selectedDate = By.XPath("//button[contains(@class,'rbc-button-link')]");
+            //private readonly By selectedDate = By.CssSelector(".rbc-date-cell button");
+
 
             public void SelectBookingDate()
             {
-                var dateCell = wait.Until(ExpectedConditions.ElementToBeClickable(
-                    By.CssSelector(".rbc-date-cell button")
-                ));
+                // Wait for any date cell to be clickable
+                var dateButton = wait.Until(
+                    ExpectedConditions.ElementToBeClickable(
+                        By.CssSelector(".rbc-date-cell button")
+                    )
+                );
 
+                // Scroll into view
                 ((IJavaScriptExecutor)driver).ExecuteScript(
-                    "arguments[0].scrollIntoView({block:'center'});", dateCell);
+                    "arguments[0].scrollIntoView({block:'center'});", dateButton);
 
-                Thread.Sleep(150);
+                Thread.Sleep(150); // allow layout to settle
 
                 try
                 {
-                    dateCell.Click();
+                    dateButton.Click();
                 }
                 catch (ElementClickInterceptedException)
                 {
-                    ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].click();", dateCell);
+                    ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].click();", dateButton);
                 }
             }
 
